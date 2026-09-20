@@ -98,11 +98,21 @@ sh derselbe_beweiser.sh zqel/z3/lib/libz3.dylib wheel/z3/lib/libz3.dylib
 It is a POSIX shell script on purpose: checking this should require installing
 nothing and trusting nothing. `otool`, `dd` and `shasum` are on every Mac.
 
-> **Note on the wheel address.** The `url` and `mirror` fields inside
-> `z3-pin.json` currently point at hosts you cannot reach from outside. The
-> address shown above is the one that works today, and it is being moved into
-> this repository. Until that is done, verification of the prover identity
-> depends on a host that is scheduled to go away.
+> ### Known defect — 2026-09-20
+>
+> **The pin manifest names no address you can use.** Both fields inside the
+> shipped `z3-pin.json` are unreachable from outside: `url` points at an
+> internal host, and `mirror` points at a repository that is private and
+> answers `HTTP 404`. The `dl.zqel.org` address used above appears nowhere in
+> the manifest — it is assembled by the build from `archived_release` plus the
+> file name — and that host is scheduled to be shut down.
+>
+> Until the pinned wheels are published here and `mirror` points at them,
+> **do not treat the prover identity as independently verifiable from
+> outside.** The recipe above works today only because a host that is going
+> away still answers.
+>
+> Tracked as issue #555 in the (non-public) source tree.
 
 ## Licences
 
